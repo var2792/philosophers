@@ -1,0 +1,20 @@
+В 1 миллисекунде 1000 микросекунд
+
+usleep(time)
+		приостанавливает выполнение вызывающего потока на (как минимум) time микросекунд. Спящий режим может немного увеличиваться из-за любой активности системы, времени, затраченного на обработку вызова, или детализации системных таймеров.
+
+gettimeofday(struct timeval *when, void *noused)
+		when указатель на структуру timeval, в которой функция может хранить время. Структура timeval содержит следующие члены:
+			time_t tv_sec - количество секунд с начала Unix Epoch.
+			suseconds_t tv_usec - количество микросекунд.
+		noused
+			Указатель должен иметь значение NULL, иначе поведение gettimeofday() не определено. Этот аргумент предоставляется только для обратной совместимости.
+
+pthread_create(pthread_t *restrict thread, const pthread_attr_t *restrict attr, void *(*start_routine)(void *), void *restrict arg)
+
+pthread_detach
+pthread_join
+pthread_mutex_init
+pthread_mutex_destroy
+pthread_mutex_lock
+pthread_mutex_unlock
