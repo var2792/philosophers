@@ -16,7 +16,7 @@ NAME		= philo_one
 			${CC} ${CFLAGS} ${SHDRS} -c $< -o $@
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} ${OBJS} ${SFLS} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJS} ${SFLS} -pthread -o ${NAME}
 
 all:		${NAME}
 

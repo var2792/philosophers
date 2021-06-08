@@ -1,15 +1,15 @@
 #include "includes.h"
 
-t_list				*ft_lstnew(int numb, int is_alive, size_t time_end_eat, size_t number_times_eat)
+t_list				*ft_lstnew(int numb)
 {
 	t_list *temp;
 
 	if (!(temp = malloc(sizeof(t_list))))
 		return (NULL);
 	temp->numb = numb;
-	temp->is_alive = is_alive;
-	temp->time_end_eat = time_end_eat;
-	temp->number_times_eat = number_times_eat;
+	temp->is_alive = 1;
+	temp->number_times_eat = 0;
+	temp->number_forks = 0;
 	temp->next = NULL;
 	return (temp);
 }
@@ -53,7 +53,7 @@ t_list				*ft_lstnum(t_list *lst, int num)
 	int		i;
 
 	temp = lst;
-	i = 1;
+	i = 0;
 	while (temp && i < num)
 	{
 		if (temp->next == 0)
