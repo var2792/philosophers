@@ -1,5 +1,5 @@
 
-SRCS		= main.c lst_lists.c utils.c
+SRCS		= main.c lst_lists.c utils.c init.c
 HEADER		= -I includes.h
 
 OBJS		=	${SRCS:.c=.o}
