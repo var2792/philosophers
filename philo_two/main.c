@@ -7,40 +7,30 @@
 
 int		one_live(t_list	*phi)
 {
-	t_fork	*fork;
-	int	i;
-	
-	fork = (phi->numb % 2) ? phi->l_fork : phi->r_fork;
-	i = 0;
-	while (i < 2)
+	if (sem_wait(phi->param->forks))
+		return (0);
+	if (sem_wait(phi->param->forks))
+		return (0);
+	if (check_time(phi->time_end_eat, phi->param->time_to_die))
 	{
-		if (pthread_mutex_lock(fork->mutex) && check_time(phi->time_end_eat, phi->pphi->time_to_die))
+		if (sem_post(phi->param->forks))
 			return (0);
-		if (i == 0)
-		{
-			fork = (phi->numb % 2) ? phi->r_fork : phi->l_fork;
-		}
-		else
-			break;
-		i++;
-	}
-	if (check_time(phi->time_end_eat, phi->pphi->time_to_die))
-	{
-		pthread_mutex_unlock(phi->l_fork->mutex);
-		pthread_mutex_unlock(phi->r_fork->mutex);
+		if (sem_post(phi->param->forks))
+			return (0);
 		return (0);
 	}
 	printf("timestamp_in_ms %d has taken a fork\n", phi->numb);
 	printf("timestamp_in_ms %d is eating\n", phi->numb);
-	usleep(phi->pphi->time_to_eat * 1000);
+	usleep(phi->param->time_to_eat * 1000);
 	gettimeofday(phi->time_end_eat, NULL);
-	pthread_mutex_unlock(phi->l_fork->mutex);
-	pthread_mutex_unlock(phi->r_fork->mutex);
-	if (check_time(phi->time_end_eat, phi->pphi->time_to_die))
+	if (sem_post(phi->param->forks))
+		return (0);
+	if (sem_post(phi->param->forks))
+		return (0);
+	if (check_time(phi->time_end_eat, phi->param->time_to_die))
 		return (0);
 	printf("timestamp_in_ms %d is sleeping\n", phi->numb);
-	usleep(phi->pphi->time_to_sleep * 1000); //если он умрет во сне
-	if (check_time(phi->time_end_eat, phi->pphi->time_to_die))
+	if (die_while_sleep(*phi))
 		return (0);
 	printf("timestamp_in_ms %d is thinking\n", phi->numb);
 	return (1);
@@ -53,7 +43,7 @@ void	*phi_live(void *phi_v)
 
 	i = 1;
 	phi = (t_list*)phi_v;
-	while (one_live(phi) && i != phi->pphi->number_of_time_each_philosophers_must_eat)
+	while (one_live(phi) && i != phi->param->number_of_time_each_philosophers_must_eat)
 		i++;
 	phi->is_alive = 0;
 	printf("timestamp_in_ms %d died\n", phi->numb);
