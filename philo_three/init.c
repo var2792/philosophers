@@ -21,7 +21,6 @@ int		read_param(int argc, char** argv, t_param* param)
 				return (1);
 		if (param->phis->number_of_time_each_philosophers_must_eat == 0)
 			return(1);
-		param->phis->stop = 0;
 		printf("Arguments: num-%lu, die-%lu mc, eat-%lu mc, sleep-%lu mc\n", param->phis->number_of_philosophers, param->phis->time_to_die, param->phis->time_to_eat, param->phis->time_to_sleep);
 		return (0);
 }
@@ -39,8 +38,6 @@ int		init_philos(t_param *param)
 	{
 		if (!(temp = ft_lstnew(i)))
 			return (error_mess(1, 3, 1, param));
-		if (!(temp->thread = malloc(sizeof(pthread_t))))
-			return (error_mess(1, 3, 1, param));
 		if (!(temp->time_end_eat = malloc(sizeof(struct timeval))))
 			return (error_mess(1, 3, 1, param));
 		temp->param = param->phis;
@@ -54,18 +51,21 @@ int		init_philos(t_param *param)
 
 void	wait_phis(t_list *lst_phi)
 {
-	size_t i;
+	size_t	i;
+	int		status;
 
 	i = 0;
-	while (i < lst_phi->param->number_of_philosophers)
+	status = 0;
+	printf("waaaaaiiiiit\n");
+	while ((!status) && i < lst_phi->param->number_of_philosophers)
 	{
-		if (lst_phi->is_alive == 0)
-			i++;
-		else
-			i = 0;
+		if (waitpid(-1, &status, 0) < 0)
+			return ;
+		i++;
 		lst_phi = lst_phi->next;
 	}
-	usleep(1 * 1000);
+	printf("%d\n", status);
+	usleep(3 * 1000);
 }
 
 int		error_mess(int ret, int fl, int del, t_param *param)

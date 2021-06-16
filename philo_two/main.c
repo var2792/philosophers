@@ -7,32 +7,34 @@
 
 int		one_live(t_list	*phi)
 {
+	mes_about_phi(phi->numb, 't');
 	if (sem_wait(phi->param->forks))
-		return (0);
+		return (error_mess(0, 3, 0, 0));
 	if (sem_wait(phi->param->forks))
-		return (0);
+		return (error_mess(0, 3, 0, 0));
 	if (check_time(phi->time_end_eat, phi->param->time_to_die))
 	{
 		if (sem_post(phi->param->forks))
-			return (0);
+			return (error_mess(0, 3, 0, 0));
 		if (sem_post(phi->param->forks))
-			return (0);
+			return (error_mess(0, 3, 0, 0));
 		return (0);
 	}
-	printf("timestamp_in_ms %d has taken a fork\n", phi->numb);
-	printf("timestamp_in_ms %d is eating\n", phi->numb);
-	usleep(phi->param->time_to_eat * 1000);
-	gettimeofday(phi->time_end_eat, NULL);
+	mes_about_phi(phi->numb, 'f');
+	mes_about_phi(phi->numb, 'e');
+	if (usleep(phi->param->time_to_eat * 1000))
+		return (error_mess(0, 3, 0, 0));
+	if (gettimeofday(phi->time_end_eat, NULL))
+		return (error_mess(0, 3, 0, 0));
 	if (sem_post(phi->param->forks))
-		return (0);
+		return (error_mess(0, 3, 0, 0));
 	if (sem_post(phi->param->forks))
-		return (0);
+		return (error_mess(0, 3, 0, 0));
 	if (check_time(phi->time_end_eat, phi->param->time_to_die))
 		return (0);
-	printf("timestamp_in_ms %d is sleeping\n", phi->numb);
+	mes_about_phi(phi->numb, 's');
 	if (die_while_sleep(*phi))
 		return (0);
-	printf("timestamp_in_ms %d is thinking\n", phi->numb);
 	return (1);
 }
 
@@ -46,7 +48,8 @@ void	*phi_live(void *phi_v)
 	while (one_live(phi) && i != phi->param->number_of_time_each_philosophers_must_eat)
 		i++;
 	phi->is_alive = 0;
-	printf("timestamp_in_ms %d died\n", phi->numb);
+	if (!phi->param->stop)
+		mes_about_phi(phi->numb, 'd');
 	return (0);
 }
 
@@ -57,9 +60,10 @@ int		philo_at_launch(t_param *param)
 	i = 1;
 	while (i <= param->phis->number_of_philosophers)
 	{
-		gettimeofday(ft_lstnum(param->lst_phi, i)->time_end_eat, NULL);
+		if (gettimeofday(ft_lstnum(param->lst_phi, i)->time_end_eat, NULL))
+			return (error_mess(1, 3, 0, 0));
 		if (pthread_create(param->lst_phi->thread, NULL, phi_live, (void*)ft_lstnum(param->lst_phi, i)) != 0)
-			return (1);
+			return (error_mess(1, 4, 0, 0));
 		i++;
 	}
 	wait_phis(param->lst_phi);
@@ -74,11 +78,12 @@ int		main(int argc, char** argv)
 	if (argc == 5 || argc == 6)
 	{
 		if (read_param(argc, argv, &param))
-			return (error_mess(1, &param));
+			return (error_mess(0, 2, 1, &param));
 		if (init_philos(&param))
-			return (error_mess(1, &param));
-		if (philo_at_launch(&param))
-			return (error_mess(1, &param));
+			return (0);
+		philo_at_launch(&param);
+		if (param.lst_phi != NULL)
+			ft_lstdel(&(param.lst_phi));
 		printf("That's all!\n");
 	}
 	else

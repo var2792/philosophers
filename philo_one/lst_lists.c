@@ -16,23 +16,29 @@ t_list				*ft_lstnew(int numb)
 
 void	ft_lstdel(t_list **lst)
 {
-	t_list *temp;
+	t_list	*temp;
+	size_t	i;
 
 	if (*lst == 0)
 		return ;
-	while (*lst)
+	i = 1;
+	while (i <= (*lst)->param->number_of_philosophers && (*lst))
 	{
 		temp = (*lst)->next;
 		free((*lst)->thread);
 		free((*lst)->time_end_eat);
 		pthread_mutex_destroy((*lst)->l_fork->mutex);
-		pthread_mutex_destroy((*lst)->r_fork->mutex);
+		free((*lst)->l_fork->mutex);
 		free((*lst)->l_fork);
-		free((*lst)->r_fork);
-		if (!temp)
-			free((*lst)->pphi);
+		if (i == (*lst)->param->number_of_philosophers)
+		{
+			free((*lst)->param);
+			free(*lst);
+			return ;
+		}
 		free(*lst);
 		*lst = temp;
+		i++;
 	}
 }
 

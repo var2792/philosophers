@@ -25,8 +25,8 @@ void	ft_lstdel(t_list **lst)
 	while (i <= (*lst)->param->number_of_philosophers && (*lst))
 	{
 		temp = (*lst)->next;
-		free((*lst)->thread);
 		free((*lst)->time_end_eat);
+		kill((*lst)->pid, SIGTERM);
 		if (i == (*lst)->param->number_of_philosophers)
 		{
 			sem_close((*lst)->param->forks);

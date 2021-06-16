@@ -6,6 +6,11 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <semaphore.h>
+# include <fcntl.h>
+
+
+#include <sys/wait.h>
 
 # include <string.h>
 
@@ -16,25 +21,18 @@ typedef struct	s_philos
 	size_t		time_to_eat;
 	size_t		time_to_sleep;
 	int			number_of_time_each_philosophers_must_eat;
+	sem_t		*forks;
 	int			stop;
 }				t_philos;
 
-typedef struct	s_fork
-{
-	pthread_mutex_t	*mutex;
-    int				num;		//количество
-}				t_fork;
-
 typedef struct	s_list
 {
-	size_t		numb;				//
+	int			numb;				//
 	int			is_alive;			//
-	pthread_t	*thread;
+	int			pid;				//
 	t_philos	*param;
 	struct timeval	*time_end_eat;	//
 	size_t		number_times_eat;	//
-	t_fork		*l_fork;
-	t_fork		*r_fork;
 	struct s_list *next;			//
 }				t_list;
 
