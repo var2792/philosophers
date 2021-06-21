@@ -25,9 +25,7 @@ int		one_live(t_list	*phi)
 		if (check_time(phi->time_end_eat, phi->param->time_to_die))
 			return (0);
 		if (i == 0)
-		{
 			fork = (phi->numb % 2) ? phi->r_fork : phi->l_fork;
-		}
 		else
 			break;
 		i++;
@@ -61,14 +59,15 @@ void	*phi_live(void *phi_v)
 {
 	t_list	*phi;
 	int		i;
+	int		fl;
 
 	i = 1;
 	phi = (t_list*)phi_v;
-	while (one_live(phi) && i != phi->param->number_of_time_each_philosophers_must_eat)
+	while ((fl = one_live(phi)) == 1 && i != phi->param->number_of_time_each_philosophers_must_eat)
 		i++;
 	phi->is_alive = 0;
-	if (!phi->param->stop)
-		mes_about_phi(phi->numb, 'd');
+	if (fl == 0 && !phi->param->stop)
+			mes_about_phi(phi->numb, 'd');
 	return (0);
 }
 
