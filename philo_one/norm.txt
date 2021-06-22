@@ -1,0 +1,158 @@
+init.c: Error!
+Error: TOO_MANY_TABS_FUNC   (line:   3, col:   5):	extra tabs before function name
+Error: SPC_AFTER_POINTER    (line:   3, col:  35):	space after pointer
+Error: SPC_AFTER_POINTER    (line:   3, col:  36):	space after pointer
+Error: SPC_AFTER_POINTER    (line:   3, col:  50):	space after pointer
+Error: TOO_MANY_TAB         (line:   5, col:   1):	Extra tabs for indent level
+Error: ASSIGN_IN_CONTROL    (line:   5, col:  27):	Assignment in control structure
+Error: TOO_MANY_TAB         (line:   6, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:   7, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:   8, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:   9, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  10, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  11, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  12, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  13, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  14, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  15, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  16, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  17, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  18, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  19, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  20, col:   1):	Extra tabs for indent level
+Error: SPACE_AFTER_KW       (line:  20, col:  39):	Missing space after keyword
+Error: LINE_TOO_LONG        (line:  20, col: 104):	line too long
+Error: TOO_MANY_TAB         (line:  21, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  22, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  23, col:   1):	Extra tabs for indent level
+Error: SPACE_AFTER_KW       (line:  23, col:  13):	Missing space after keyword
+Error: SPC_BFR_PAR          (line:  23, col:  19):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_TAB         (line:  24, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  25, col:   1):	Extra tabs for indent level
+Error: LINE_TOO_LONG        (line:  25, col:  82):	line too long
+Error: TOO_MANY_TAB         (line:  26, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TABS_FUNC   (line:  29, col:   5):	extra tabs before function name
+Error: SPACE_REPLACE_TAB    (line:  31, col:  11):	Found space when expecting tab
+Error: SPACE_REPLACE_TAB    (line:  32, col:  11):	Found space when expecting tab
+Error: ASSIGN_IN_CONTROL    (line:  37, col:  20):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  41, col:  32):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  43, col:  39):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  53, col:  36):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  55, col:  43):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  69, col:  28):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  71, col:  34):	Assignment in control structure
+Error: TOO_MANY_LINES       (line:  78, col:   1):	Function has more than 25 lines
+Error: SPACE_REPLACE_TAB    (line:  82, col:  11):	Found space when expecting tab
+Error: SPC_AFTER_OPERATOR   (line:  91, col:  52):	missing space after operator
+Error: TOO_MANY_TABS_FUNC   (line:  97, col:   5):	extra tabs before function name
+lst_lists.c: Error!
+Error: TOO_MANY_TABS_FUNC   (line:   3, col:  17):	extra tabs before function name
+Error: SPACE_REPLACE_TAB    (line:   5, col:  11):	Found space when expecting tab
+Error: ASSIGN_IN_CONTROL    (line:   7, col:  16):	Assignment in control structure
+Error: CONSECUTIVE_NEWLINES (line:  16, col:   1):	Consecutive newlines
+Error: TOO_MANY_TABS_FUNC   (line:  45, col:  21):	extra tabs before function name
+Error: TOO_MANY_TABS_FUNC   (line:  60, col:  17):	extra tabs before function name
+main.c: Error!
+Error: LINE_TOO_LONG        (line:   3, col:   1):	line too long
+Error: LINE_TOO_LONG        (line:   3, col: 107):	line too long
+Error: TOO_MANY_TABS_FUNC   (line:   8, col:   5):	extra tabs before function name
+Error: MISALIGNED_VAR_DECL  (line:  11, col:   9):	Misaligned variable declaration
+Error: TERNARY_FBIDDEN      (line:  14, col:   1):	Ternaries are forbidden
+Error: EXP_NEWLINE          (line:  18, col:  43):	Expected newline after control structure
+Error: TERNARY_FBIDDEN      (line:  34, col:   1):	Ternaries are forbidden
+Error: SPACE_AFTER_KW       (line:  36, col:  13):	Missing space after keyword
+Error: LINE_TOO_LONG        (line:  47, col:   1):	line too long
+Error: WRONG_SCOPE_COMMENT  (line:  47, col:   5):	Comment is invalid in this scope
+Error: LINE_TOO_LONG        (line:  47, col: 110):	line too long
+Error: TOO_MANY_TAB         (line:  53, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_TAB         (line:  55, col:   1):	Extra tabs for indent level
+Error: TOO_MANY_LINES       (line:  62, col:   1):	Function has more than 25 lines
+Error: SPACE_AFTER_KW       (line:  71, col:  12):	Missing space after keyword
+Error: ASSIGN_IN_CONTROL    (line:  72, col:  16):	Assignment in control structure
+Error: LINE_TOO_LONG        (line:  72, col:  99):	line too long
+Error: TOO_MANY_TABS_FUNC   (line:  80, col:   5):	extra tabs before function name
+Error: SPACE_REPLACE_TAB    (line:  82, col:  11):	Found space when expecting tab
+Error: SPACE_AFTER_KW       (line:  88, col:  69):	Missing space after keyword
+Error: LINE_TOO_LONG        (line:  88, col:  84):	line too long
+Error: TOO_MANY_TABS_FUNC   (line:  97, col:   5):	extra tabs before function name
+Error: SPC_AFTER_POINTER    (line:  97, col:  29):	space after pointer
+Error: SPC_AFTER_POINTER    (line:  97, col:  30):	space after pointer
+utils.c: Error!
+Error: TOO_MANY_TABS_FUNC   (line:   3, col:   5):	extra tabs before function name
+Error: SPACE_REPLACE_TAB    (line:   5, col:   8):	Found space when expecting tab
+Error: SPACE_REPLACE_TAB    (line:  21, col:  10):	Found space when expecting tab
+Error: TOO_MANY_TABS_FUNC   (line:  28, col:   5):	extra tabs before function name
+Error: SPACE_REPLACE_TAB    (line:  30, col:  19):	Found space when expecting tab
+Error: LINE_TOO_LONG        (line:  33, col:   1):	line too long
+Error: WRONG_SCOPE_COMMENT  (line:  33, col:   5):	Comment is invalid in this scope
+Error: LINE_TOO_LONG        (line:  33, col: 152):	line too long
+Error: TOO_MANY_TABS_FUNC   (line:  39, col:   5):	extra tabs before function name
+Error: SPACE_REPLACE_TAB    (line:  52, col:  19):	Found space when expecting tab
+Error: LINE_TOO_LONG        (line:  57, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  59, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  61, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  63, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  65, col:  82):	line too long
+includes.h: Error!
+Error: HEADER_PROT_NAME     (line:   1, col:   1):	Wrong header protection name
+Error: HEADER_PROT_ALL      (line:   2, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  12, col:   1):	Header protection must include all the instructions
+Error: TAB_REPLACE_SPACE    (line:  12, col:  15):	Found tab when expecting space
+Error: HEADER_PROT_ALL      (line:  14, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  15, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  16, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  17, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  18, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  19, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  22, col:   1):	Header protection must include all the instructions
+Error: TAB_REPLACE_SPACE    (line:  22, col:  15):	Found tab when expecting space
+Error: HEADER_PROT_ALL      (line:  24, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  25, col:   1):	Header protection must include all the instructions
+Error: TOO_FEW_TAB          (line:  25, col:   1):	Missing tabs for indent level
+Error: SPACE_REPLACE_TAB    (line:  25, col:   5):	Found space when expecting tab
+Error: WRONG_SCOPE_COMMENT  (line:  25, col:  33):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  25, col:  33):	Comment is invalid in this scope
+Error: HEADER_PROT_ALL      (line:  28, col:   1):	Header protection must include all the instructions
+Error: TAB_REPLACE_SPACE    (line:  28, col:  15):	Found tab when expecting space
+Error: HEADER_PROT_ALL      (line:  30, col:   1):	Header protection must include all the instructions
+Error: WRONG_SCOPE_COMMENT  (line:  30, col:  37):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  30, col:  37):	Comment is invalid in this scope
+Error: HEADER_PROT_ALL      (line:  31, col:   1):	Header protection must include all the instructions
+Error: WRONG_SCOPE_COMMENT  (line:  31, col:  37):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  31, col:  37):	Comment is invalid in this scope
+Error: HEADER_PROT_ALL      (line:  32, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  33, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  34, col:   1):	Header protection must include all the instructions
+Error: MISALIGNED_VAR_DECL  (line:  34, col:  21):	Misaligned variable declaration
+Error: WRONG_SCOPE_COMMENT  (line:  34, col:  37):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  34, col:  37):	Comment is invalid in this scope
+Error: HEADER_PROT_ALL      (line:  35, col:   1):	Header protection must include all the instructions
+Error: WRONG_SCOPE_COMMENT  (line:  35, col:  37):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  35, col:  37):	Comment is invalid in this scope
+Error: HEADER_PROT_ALL      (line:  36, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  37, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  38, col:   1):	Header protection must include all the instructions
+Error: SPACE_REPLACE_TAB    (line:  38, col:  18):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line:  38, col:  19):	Misaligned variable declaration
+Error: WRONG_SCOPE_COMMENT  (line:  38, col:  37):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  38, col:  37):	Comment is invalid in this scope
+Error: HEADER_PROT_ALL      (line:  41, col:   1):	Header protection must include all the instructions
+Error: TAB_REPLACE_SPACE    (line:  41, col:  15):	Found tab when expecting space
+Error: HEADER_PROT_ALL      (line:  43, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  44, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  47, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  48, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  49, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  50, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  51, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  53, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  54, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  55, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  56, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  58, col:   1):	Header protection must include all the instructions
+Error: SPC_AFTER_POINTER    (line:  58, col:  35):	space after pointer
+Error: SPC_AFTER_POINTER    (line:  58, col:  36):	space after pointer
+Error: SPC_AFTER_POINTER    (line:  58, col:  50):	space after pointer
+Error: HEADER_PROT_ALL      (line:  59, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  60, col:   1):	Header protection must include all the instructions
+Error: HEADER_PROT_ALL      (line:  61, col:   1):	Header protection must include all the instructions

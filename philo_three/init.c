@@ -56,13 +56,23 @@ void	wait_phis(t_list *lst_phi)
 
 	i = 0;
 	status = 0;
-	printf("waaaaaiiiiit\n");
-	while ((!status) && i < lst_phi->param->number_of_philosophers)
+	usleep(1000000);
+	printf("wait\n");
+	//while ((!status) && i < lst_phi->param->number_of_philosophers)
 	{
-		if (waitpid(-1, &status, 0) < 0)
+		if (waitpid(-2, &status, 0) < 0)
 			return ;
 		i++;
-		lst_phi = lst_phi->next;
+	}
+	printf("wait %d\n", status);
+	if (status)
+	{
+		while (lst_phi && i > 0)
+		{
+			kill(lst_phi->pid, SIGINT);
+			lst_phi = lst_phi->next;
+			i--;
+		}
 	}
 	printf("%d\n", status);
 	usleep(3 * 1000);

@@ -38,27 +38,11 @@ int		check_time(struct timeval *time_end_eat, size_t time_to_die)
 
 int		die_while_sleep(t_list	phi)
 {
-	size_t t;
 
-	t = 0;
-	if (phi.param->time_to_sleep + 5 > phi.param->time_to_die)
-	{
-		if (usleep(phi.param->time_to_sleep * 1000))
-			return (error_mess(1, 3, 0, 0));
-	}
+	if (phi.param->time_to_sleep < phi.param->time_to_die + 10)
+		usleep(phi.param->time_to_sleep * 1000);
 	else
-	{
-		while (t + 10 < phi.param->time_to_sleep)
-		{
-			t +=10;
-			if (usleep(t * 1000))
-				return (error_mess(1, 3, 0, 0));
-			if (check_time(phi.time_end_eat, phi.param->time_to_die))
-				return (1);
-		}
-		if (usleep((phi.param->time_to_sleep - t) * 1000))
-			return (error_mess(1, 3, 0, 0));
-	}
+		usleep(phi.param->time_to_die * 1000);
 	if (check_time(phi.time_end_eat, phi.param->time_to_die))
 		return (1);
 	return (0);
@@ -80,4 +64,6 @@ void	mes_about_phi(size_t numb, char f)
 		printf("%lu%lu %lu is thinking\n", now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
 	if (f == 'd')
 		printf("%lu%lu %lu died\n", now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
+	if (f == 'm')
+		printf("%lu%lu %lu is here <<<--------\n", now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
 }
