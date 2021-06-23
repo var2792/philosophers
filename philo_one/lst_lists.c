@@ -1,10 +1,11 @@
 #include "includes.h"
 
-t_list				*ft_lstnew(int numb)
+t_list	*ft_lstnew(int numb)
 {
-	t_list *temp;
+	t_list	*temp;
 
-	if (!(temp = malloc(sizeof(t_list))))
+	temp = malloc(sizeof(t_list));
+	if (!temp)
 		return (NULL);
 	temp->numb = numb;
 	temp->is_alive = 1;
@@ -12,7 +13,6 @@ t_list				*ft_lstnew(int numb)
 	temp->next = NULL;
 	return (temp);
 }
-
 
 void	ft_lstdel(t_list **lst)
 {
@@ -42,7 +42,7 @@ void	ft_lstdel(t_list **lst)
 	}
 }
 
-void					ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*temp;
 
@@ -57,7 +57,7 @@ void					ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
-t_list				*ft_lstnum(t_list *lst, int num)
+t_list	*ft_lstnum(t_list *lst, int num)
 {
 	t_list	*temp;
 	int		i;

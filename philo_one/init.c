@@ -1,48 +1,53 @@
 #include "includes.h"
 
-int		read_param(int argc, char** argv, t_param* param)
+int	read_param(int argc, char **argv, t_param *param)
 {
-		if (!(param->phis = malloc(sizeof(t_philos))))
+	param->phis = malloc(sizeof(t_philos));
+	if (!(param->phis))
+		return (1);
+	if (ft_atoi_end(argv[1], &(param->phis->number_of_philosophers)))
+		return (1);
+	if (param->phis->number_of_philosophers < 1)
+		return (1);
+	if (ft_atoi_end(argv[2], &(param->phis->time_to_die)))
+		return (1);
+	if (ft_atoi_end(argv[3], &(param->phis->time_to_eat)))
+		return (1);
+	if (ft_atoi_end(argv[4], &(param->phis->time_to_sleep)))
+		return (1);
+	if (argc == 5)
+		param->phis->number_of_time_each_philosophers_must_eat = -1;
+	else
+		if (ft_atoi_end(argv[5], (size_t *)
+				(&(param->phis->number_of_time_each_philosophers_must_eat))))
 			return (1);
-		if (ft_atoi_end(argv[1], &(param->phis->number_of_philosophers)))
-			return (1);
-		if (param->phis->number_of_philosophers < 1)
-			return (1);
-		if (ft_atoi_end(argv[2], &(param->phis->time_to_die)))
-			return (1);
-		if (ft_atoi_end(argv[3], &(param->phis->time_to_eat)))
-			return (1);
-		if (ft_atoi_end(argv[4], &(param->phis->time_to_sleep)))
-			return (1);
-		if (argc == 5)
-			param->phis->number_of_time_each_philosophers_must_eat = -1;
-		else
-			if (ft_atoi_end(argv[5], (size_t*)(&(param->phis->number_of_time_each_philosophers_must_eat))))
-				return (1);
-		if (param->phis->number_of_time_each_philosophers_must_eat == 0)
-			return(1);
-		param->phis->stop = 0;
-		printf("Arguments: num-%lu, die-%lu mc, eat-%lu mc, sleep-%lu mc\n", param->phis->number_of_philosophers, param->phis->time_to_die, param->phis->time_to_eat, param->phis->time_to_sleep);
-		return (0);
+	if (param->phis->number_of_time_each_philosophers_must_eat == 0)
+		return (1);
+	param->phis->stop = 0;
+	printf("Arguments: num-%lu, die-%lu mc, eat-%lu mc, sleep-%lu mc\n", param->phis->number_of_philosophers, param->phis->time_to_die, param->phis->time_to_eat, param->phis->time_to_sleep);
+	return (0);
 }
 
-int		init_philos(t_param *param)
+int	init_philos(t_param *param)
 {
-	size_t i;
-	t_list *temp;
+	size_t	i;
+	t_list	*temp;
 
 	i = 1;
 	while (i <= param->phis->number_of_philosophers)
 	{
-		if (!(temp = ft_lstnew(i)))
+		temp = ft_lstnew(i);
+		if (!(temp))
 			return (1);
 		if (i == 1)
 		{
-			if (!(temp->l_fork = malloc(sizeof(t_fork))))
+			temp->l_fork = malloc(sizeof(t_fork));
+			if (!(temp->l_fork))
 				return (error_mess(1, 3, 1, param));
-			if (!(temp->l_fork->mutex = malloc(sizeof(pthread_mutex_t))))
+			temp->l_fork->mutex = malloc(sizeof(pthread_mutex_t));
+			if (!(temp->l_fork->mutex))
 				return (error_mess(1, 3, 1, param));
-			temp->l_fork->num = i;
+			temp->l_fork->num = 1;
 		}
 		else
 			temp->l_fork = ft_lstnum(param->lst_phi, i - 1)->r_fork;
@@ -50,11 +55,13 @@ int		init_philos(t_param *param)
 		{
 			if (i != param->phis->number_of_philosophers)
 			{
-				if (!(temp->r_fork = malloc(sizeof(t_fork))))
+				temp->r_fork = malloc(sizeof(t_fork));
+				if (!(temp->r_fork))
 					return (error_mess(1, 3, 1, param));
-				if (!(temp->r_fork->mutex = malloc(sizeof(pthread_mutex_t))))
+				temp->r_fork->mutex = malloc(sizeof(pthread_mutex_t));
+				if (!(temp->r_fork->mutex))
 					return (error_mess(1, 3, 1, param));
-				temp->r_fork->num = i + 1;
+				temp->r_fork->num = 1;
 			}
 			else
 			{
@@ -66,9 +73,11 @@ int		init_philos(t_param *param)
 			temp->r_fork = NULL;
 		if (pthread_mutex_init(temp->l_fork->mutex, NULL))
 			return (error_mess(1, 3, 1, param));
-		if (!(temp->thread = malloc(sizeof(pthread_t))))
+		temp->thread = malloc(sizeof(pthread_t));
+		if (!(temp->thread))
 			return (error_mess(1, 3, 1, param));
-		if (!(temp->time_end_eat = malloc(sizeof(struct timeval))))
+		temp->time_end_eat = malloc(sizeof(struct timeval));
+		if (!(temp->time_end_eat))
 			return (error_mess(1, 3, 1, param));
 		temp->param = param->phis;
 		ft_lstadd_back(&(param->lst_phi), temp);
@@ -79,7 +88,7 @@ int		init_philos(t_param *param)
 
 void	wait_phis(t_list *lst_phi)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < lst_phi->param->number_of_philosophers)
@@ -88,13 +97,13 @@ void	wait_phis(t_list *lst_phi)
 			i++;
 		else
 			i = 0;
-		if (lst_phi->param->number_of_philosophers !=1)
+		if (lst_phi->param->number_of_philosophers != 1)
 			lst_phi = lst_phi->next;
 	}
 	usleep(1 * 1000);
 }
 
-int		error_mess(int ret, int fl, int del, t_param *param)
+int	error_mess(int ret, int fl, int del, t_param *param)
 {
 	param->phis->stop = 1;
 	if (fl == 1)

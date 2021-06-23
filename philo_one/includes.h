@@ -1,15 +1,14 @@
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef INCL_PHILO_ONE_H
+# define INCL_PHILO_ONE_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
-
 # include <string.h>
 
-typedef struct	s_philos
+typedef struct s_philos
 {
 	size_t		number_of_philosophers;
 	size_t		time_to_die;
@@ -19,26 +18,26 @@ typedef struct	s_philos
 	int			stop;
 }				t_philos;
 
-typedef struct	s_fork
+typedef struct s_fork
 {
 	pthread_mutex_t	*mutex;
-    int				num;		//количество
+	int				num;
 }				t_fork;
 
-typedef struct	s_list
+typedef struct s_list
 {
-	size_t		numb;				//
-	int			is_alive;			//
-	pthread_t	*thread;
-	t_philos	*param;
-	struct timeval	*time_end_eat;	//
-	size_t		number_times_eat;	//
-	t_fork		*l_fork;
-	t_fork		*r_fork;
-	struct s_list *next;			//
+	size_t			numb;
+	int				is_alive;
+	pthread_t		*thread;
+	t_philos		*param;
+	struct timeval	*time_end_eat;
+	size_t			number_times_eat;
+	t_fork			*l_fork;
+	t_fork			*r_fork;
+	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_param
+typedef struct s_param
 {
 	t_philos	*phis;
 	t_list		*lst_phi;
@@ -55,9 +54,11 @@ void	ft_lstdel(t_list **lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnum(t_list *lst, int num);
 
-int		read_param(int argc, char** argv, t_param* param);
+int		read_param(int argc, char **argv, t_param *param);
 int		init_philos(t_param *param);
 void	wait_phis(t_list *lst_phi);
 int		error_mess(int ret, int fl, int del, t_param *param);
 
+int		take_fork(t_fork *fork);
+int		retu_fork(t_fork *fork);
 #endif

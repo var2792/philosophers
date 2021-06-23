@@ -2,57 +2,60 @@
 
 //number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
-//защита всех маллоков в функции и mutex_init'ов
-//printf("heeeeeeyyyyy\n");
-
-int		one_live(t_list	*phi)
+int	one_live(t_list	*phi)
 {
 	t_fork	*fork;
-	int	i;
+	int		i;
 
 	mes_about_phi(phi->numb, 't');
-	fork = (phi->numb % 2) ? phi->l_fork : phi->r_fork;
+	if (phi->numb % 2)
+		fork = phi->l_fork;
+	else
+		fork = phi->r_fork;
 	i = 0;
 	if (phi->param->number_of_philosophers == 1)
 	{
-		while (die_while_sleep(*phi) == 0);
+		while (die_while_sleep(*phi) == 0)
+			NULL;
 		return (0);
 	}
 	while (i < 2)
 	{
-		if (pthread_mutex_lock(fork->mutex))
-			return (error_mess(0, 3, 0, 0));
-		if (check_time(phi->time_end_eat, phi->param->time_to_die))
+		while (take_fork(fork))
 		{
-			if (pthread_mutex_unlock(phi->l_fork->mutex))
-				return (error_mess(0, 3, 0, 0));
-			if (pthread_mutex_unlock(phi->r_fork->mutex))
-				return (error_mess(0, 3, 0, 0));
-			return (0);
+			if (check_time(phi->time_end_eat, phi->param->time_to_die))
+			{
+				if (retu_fork(phi->l_fork))
+					return (error_mess(0, 3, 0, 0));
+				if (retu_fork(phi->r_fork))
+					return (error_mess(0, 3, 0, 0));
+				return (0);
+			}
 		}
-		if (i == 0)
-			fork = (phi->numb % 2) ? phi->r_fork : phi->l_fork;
+		if (i == 1)
+			break ;
+		if (phi->numb % 2)
+			fork = phi->r_fork;
 		else
-			break;
+			fork = phi->l_fork;
 		i++;
 	}
 	if (check_time(phi->time_end_eat, phi->param->time_to_die))
 	{
-		if (pthread_mutex_unlock(phi->l_fork->mutex))
+		if (retu_fork(phi->l_fork))
 			return (error_mess(0, 3, 0, 0));
-		if (pthread_mutex_unlock(phi->r_fork->mutex))
+		if (retu_fork(phi->r_fork))
 			return (error_mess(0, 3, 0, 0));
 		return (0);
 	}
-	//printf("%lu000 %d has taken a fork %d %d\n", time_ret(), phi->numb, phi->l_fork->num, phi->r_fork->num);
 	mes_about_phi(phi->numb, 'f');
 	mes_about_phi(phi->numb, 'e');
 	usleep(phi->param->time_to_eat * 1000);
 	gettimeofday(phi->time_end_eat, NULL);
 	if (pthread_mutex_unlock(phi->l_fork->mutex))
-			return (error_mess(0, 3, 0, 0));
+		return (error_mess(0, 3, 0, 0));
 	if (pthread_mutex_unlock(phi->r_fork->mutex))
-			return (error_mess(0, 3, 0, 0));
+		return (error_mess(0, 3, 0, 0));
 	if (check_time(phi->time_end_eat, phi->param->time_to_die))
 		return (0);
 	mes_about_phi(phi->numb, 's');
@@ -68,35 +71,39 @@ void	*phi_live(void *phi_v)
 	int		fl;
 
 	i = 1;
-	phi = (t_list*)phi_v;
-	while ((fl = one_live(phi)) == 1 && i != phi->param->number_of_time_each_philosophers_must_eat)
+	fl = 1;
+	phi = (t_list *)phi_v;
+	while (fl == 1 && i != phi->param->number_of_time_each_philosophers_must_eat)
+	{
+		fl = one_live(phi);
 		i++;
+	}
 	phi->is_alive = 0;
 	if (fl == 0 && !phi->param->stop)
 		mes_about_phi(phi->numb, 'd');
 	return (0);
 }
 
-int		philo_at_launch(t_param *param)
+int	philo_at_launch(t_param *param)
 {
-	size_t i;
+	size_t	i;
 
 	i = 1;
 	while (i <= param->phis->number_of_philosophers)
 	{
 		gettimeofday(ft_lstnum(param->lst_phi, i)->time_end_eat, NULL);
-		if (pthread_create(param->lst_phi->thread, NULL, phi_live, (void*)ft_lstnum(param->lst_phi, i)) != 0)
+		if (pthread_create(param->lst_phi->thread, NULL,
+				phi_live, (void *)ft_lstnum(param->lst_phi, i)) != 0)
 			return (error_mess(1, 4, 0, 0));
 		i++;
 	}
 	wait_phis(param->lst_phi);
-	printf("end of wait\n");
 	return (0);
 }
 
-int		main(int argc, char** argv)
+int	main(int argc, char **argv)
 {
-	t_param		param;
+	t_param	param;
 
 	param.lst_phi = NULL;
 	if (argc == 5 || argc == 6)
