@@ -8,7 +8,6 @@ t_list	*ft_lstnew(int numb)
 	if (!temp)
 		return (NULL);
 	temp->numb = numb;
-	temp->is_alive = 1;
 	temp->number_times_eat = 0;
 	temp->next = NULL;
 	return (temp);
