@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "functions.h"
 
 int	take_fork(t_fork *fork)
 {
@@ -50,9 +50,18 @@ int	read_param(int argc, char **argv, t_param *param)
 
 void	wait_phis(t_list *lst_phi)
 {
+	size_t	i;
+
+	i = 1;
 	while (lst_phi->param->simul)
 		NULL;
-	usleep(1 * 1000);
+	while (i < lst_phi->param->number_of_philosophers && lst_phi)
+	{
+		pthread_join(*(lst_phi->thread), NULL);
+		i++;
+		lst_phi = lst_phi->next;
+	}
+	usleep(10 * 1000);
 }
 
 int	error_mess(int ret, int fl, int del, t_param *param)

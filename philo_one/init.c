@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "functions.h"
 
 int	right_fork_for_phi(t_param *param, t_list	*temp, size_t i)
 {

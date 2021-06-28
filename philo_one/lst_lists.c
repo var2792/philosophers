@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "functions.h"
 
 t_list	*ft_lstnew(int numb)
 {

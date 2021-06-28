@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "functions.h"
 
 void	*phi_live(void *phi_v)
 {
@@ -19,8 +19,9 @@ void	*phi_live(void *phi_v)
 	{
 		phi->param->simul = 0;
 		if (fl == 0 && !phi->param->stop)
-			if (mes_about_phi(phi->param->simul, phi->numb, 'd'))
-				return (0);
+		{
+			mes_about_phi(phi->param->simul, phi->numb, 'd');
+		}
 	}
 	return (0);
 }
@@ -56,7 +57,6 @@ int	main(int argc, char **argv)
 		philo_at_launch(&param);
 		if (param.lst_phi != NULL)
 			ft_lstdel(&(param.lst_phi));
-		printf("That's all!\n");
 	}
 	else
 		write(1, "Error arguments!\n", 17);

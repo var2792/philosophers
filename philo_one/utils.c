@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "functions.h"
 
 int	ft_atoi_end(char *str, size_t *num)
 {

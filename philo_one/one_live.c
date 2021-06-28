@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "functions.h"
 
 int	take_forks(t_list	*phi)
 {
