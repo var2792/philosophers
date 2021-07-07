@@ -15,20 +15,24 @@ void	*phi_live(void *phi_v)
 		fl = one_live(phi);
 		i++;
 	}
+	phi->status = 0;
 	if (phi->param->simul)
 	{
-		phi->param->simul = 0;
 		if (fl == 0 && !phi->param->stop)
 		{
-			mes_about_phi(phi->param->simul, phi->numb, 'd');
+			phi->param->simul = 0;
+			mes_about_phi(phi->param->simul, phi->numb, 'd', NULL);
 		}
 	}
+	//printf("%lu have %d diner<-------------------\n", phi->numb, i);
+	//mes_about_phi(phi->param->simul, phi->numb, 'm');
 	return (0);
 }
 
 int	philo_at_launch(t_param *param)
 {
 	size_t	i;
+
 
 	i = 1;
 	while (i <= param->phis->number_of_philosophers)

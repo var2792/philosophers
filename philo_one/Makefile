@@ -1,5 +1,5 @@
 
-SRCS		= main.c lst_lists.c utils.c utils2.c init.c one_live.c
+SRCS		= main.c lst_lists.c utils.c utils2.c init.c one_live.c print_mess.c
 HEADER		= -I includes.h functions.h types.h
 
 OBJS		=	${SRCS:.c=.o}
@@ -16,7 +16,7 @@ NAME		= philo
 			${CC} ${CFLAGS} ${SHDRS} -c $< -o $@
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} ${OBJS} ${SFLS} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJS} ${SFLS} -pthread -o ${NAME}
 
 all:		${NAME}
 

@@ -10,6 +10,7 @@ t_list	*ft_lstnew(int numb)
 	temp->numb = numb;
 	temp->number_times_eat = 0;
 	temp->next = NULL;
+	temp->status = 1;
 	return (temp);
 }
 
@@ -21,6 +22,7 @@ void	ft_lstdel(t_list **lst)
 	if (*lst == 0)
 		return ;
 	i = 1;
+	printf("list delete start\n");
 	while (i <= (*lst)->param->number_of_philosophers && (*lst))
 	{
 		temp = (*lst)->next;

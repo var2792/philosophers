@@ -30,46 +30,21 @@ int	check_time(struct timeval *time_end_eat, size_t time_to_die)
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	if (dif_time_mc(time_end_eat, &now) > time_to_die)
+	if (dif_time_mc(time_end_eat, &now) + 10 > time_to_die)
 		return (1);
 	return (0);
 }
 
 int	die_while_sleep(t_list	phi)
 {
-	if (phi.param->time_to_sleep < phi.param->time_to_die + 10)
+	if (phi.param->time_to_sleep + 10 < phi.param->time_to_die)
 		usleep(phi.param->time_to_sleep * 1000);
 	else
+	{
 		usleep(phi.param->time_to_die * 1000);
+		return (1);
+	}
 	if (check_time(phi.time_end_eat, phi.param->time_to_die))
 		return (1);
 	return (0);
-}
-
-int	mes_about_phi(int simul, size_t numb, char f)
-{
-	struct timeval	now;
-
-	if (gettimeofday(&now, NULL))
-		return (0);
-	if (simul)
-	{
-		if (f == 'f')
-			printf("%lu%lu %lu has taken a fork\n",
-				now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
-		if (f == 'e')
-			printf("%lu%lu %lu is eating\n",
-				now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
-		if (f == 's')
-			printf("%lu%lu %lu is sleeping\n",
-				now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
-		if (f == 't')
-			printf("%lu%lu %lu is thinking\n",
-				now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
-		return (0);
-	}
-	if (f == 'd')
-		printf("%lu%lu %lu died\n",
-			now.tv_sec, (size_t)(now.tv_usec / 1000), numb);
-	return (1);
 }

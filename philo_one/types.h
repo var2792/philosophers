@@ -29,6 +29,7 @@ typedef struct s_list
 	size_t			number_times_eat;
 	t_fork			*l_fork;
 	t_fork			*r_fork;
+	int				status;
 	struct s_list	*next;
 }				t_list;
 
