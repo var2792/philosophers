@@ -22,7 +22,6 @@ void	ft_lstdel(t_list **lst)
 	if (*lst == 0)
 		return ;
 	i = 1;
-	printf("list delete start\n");
 	while (i <= (*lst)->param->number_of_philosophers && (*lst))
 	{
 		temp = (*lst)->next;

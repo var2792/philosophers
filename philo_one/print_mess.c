@@ -51,20 +51,20 @@ static void	hard00(size_t sec, size_t usec, size_t numb, char f)
 static void	mes_died(size_t sec, size_t usec, size_t numb)
 {
 	if (usec > 99)
-	printf("%lu%lu %lu is died\n",
-		sec, usec, numb);
+		printf("%lu%lu %lu is died\n",
+			sec, usec, numb);
 	if (usec < 100 && usec > 9)
-	printf("%lu%c%lu %lu is died\n",
-		sec, '0', usec, numb);
+		printf("%lu%c%lu %lu is died\n",
+			sec, '0', usec, numb);
 	if (usec < 10)
-	printf("%lu%s%lu %lu is died\n",
-		sec, "00", usec, numb);
+		printf("%lu%s%lu %lu is died\n",
+			sec, "00", usec, numb);
 }
 
 int	mes_about_phi(int simul, size_t numb, char f)
 {
 	struct timeval	now;
-	size_t usec;
+	size_t			usec;
 
 	if (gettimeofday(&now, NULL))
 		return (0);

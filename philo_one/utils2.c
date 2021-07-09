@@ -53,7 +53,7 @@ void	wait_phis(t_list *lst_phi)
 	size_t	i;
 
 	i = 1;
-	while (lst_phi->param->simul && i != lst_phi->param->number_of_philosophers && lst_phi)
+	while (i != lst_phi->param->number_of_philosophers && lst_phi)
 	{
 		if (!lst_phi->status)
 			i++;
@@ -61,13 +61,6 @@ void	wait_phis(t_list *lst_phi)
 			i = 0;
 		lst_phi = lst_phi->next;
 	}
-	while (i < lst_phi->param->number_of_philosophers && lst_phi)
-	{
-		pthread_join(*(lst_phi->thread), NULL);
-		i++;
-		lst_phi = lst_phi->next;
-	}
-	printf("simul is %d\n", lst_phi->param->simul);
 	usleep(1000 * 1000);
 }
 

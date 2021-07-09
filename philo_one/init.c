@@ -65,7 +65,6 @@ int	init_philos(t_param *param)
 		if (!(temp->time_end_eat))
 			return (error_mess(1, 3, 1, param));
 		temp->param = param->phis;
-		temp->status = 1;
 		ft_lstadd_back(&(param->lst_phi), temp);
 		i++;
 	}
